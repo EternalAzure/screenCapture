@@ -18,7 +18,7 @@ if not exist "%~n0.exe" (
       exit /b %errorlevel% 
    )
 )
-%~n0.exe %*
+
 endlocal & exit /b %errorlevel%
 
 */
