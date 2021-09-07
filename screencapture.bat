@@ -83,6 +83,7 @@ public class ScreenCapture
         return img;
     }
 
+
     static String time = "";
 	static String file = "kuvakaappaus.png";
 	static String directory = "";
@@ -110,6 +111,8 @@ public class ScreenCapture
     {
         User32.SetProcessDPIAware();
 		ScreenCapture sc = new ScreenCapture();
+		const int SW_HIDE = 0;
+		const int SW_SHOW = 5;
 		
 		DateTime now = DateTime.Now;
 		time = now.ToString("dd/MM/yyyy HH:mm");
@@ -130,6 +133,10 @@ public class ScreenCapture
 		
 		// Take user arguments
 		parseArguments();
+		
+		// Hide console
+		IntPtr handle = User32.GetForegroundWindow();
+		User32.ShowWindow(handle, SW_HIDE);
 		
         try
         {
@@ -168,7 +175,7 @@ public class ScreenCapture
     }
 
 
-    /// Helper class containing User32 API functions 
+    /// Helper class containing User32 API and kernel32 functions 
 
     private class User32
     {
@@ -192,5 +199,10 @@ public class ScreenCapture
         public static extern IntPtr GetForegroundWindow();
         [DllImport("user32.dll")]
         public static extern int SetProcessDPIAware();
+		
+		[DllImport("kernel32.dll")]
+		public static extern IntPtr GetConsoleWindow();
+		[DllImport("user32.dll")]
+		public static extern bool ShowWindow(IntPtr hWnd, int nCmdShow);
     }
 }
