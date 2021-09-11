@@ -91,6 +91,7 @@ public class ScreenCapture
 
 	static void parseArguments()
     {
+        Random random = new Random();
 		// Take user arguments
 		Console.WriteLine("Anna kuvalle nimi kirjoittamalla sana ja painamalla ENTER");
 		Console.WriteLine("Painamalla vain ENTER kuva saa nimeksi päivämäärän");
@@ -98,11 +99,11 @@ public class ScreenCapture
 		String argument = Console.ReadLine();
 		if (argument.Equals(""))
 		{
-			file = directory + time + ".png";
+			file = directory + time + ".pvä - " + random.Next(1000) + ".png";
 			
 		} else
 		{
-			file = directory + argument + ".png";
+			file = directory + argument + " - " + random.Next(1000) + ".png";
 			
 		} 
 	}
@@ -115,7 +116,7 @@ public class ScreenCapture
 		const int SW_SHOW = 5;
 		
 		DateTime now = DateTime.Now;
-		time = now.ToString("dd/MM/yyyy HH:mm");
+		time = now.ToString("dd");
 		directory = "./" + now.ToString("MMMM/yyyy") + "/";
 		
 		try
@@ -140,7 +141,7 @@ public class ScreenCapture
 		
         try
         {
-			Console.WriteLine("Taking a capture of the whole screen to " + file);
+			Console.WriteLine("Otetaan kuvaa koko näytöstä" + file);
             sc.CaptureScreenToFile(file, format);
         }
         catch (Exception e)
