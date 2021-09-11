@@ -3,7 +3,7 @@
 ## What
 
 The programme takes a screenshot and saves it to a folder `./<month/year>`. If the folder does not exist the programme creates one.
-User can name the screenshot or let it be named with ```DateTime.Now```
+User can name the screenshot or let it be named with number of the day. All names will get random number suffix between 0-999.
 
 ## How
 
